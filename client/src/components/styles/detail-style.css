@@ -1,0 +1,31 @@
+:root{
+    /* --main-color: #FDB827;
+    --dark-color: #23120B;
+    --light-color: #21209C;
+    --text-color: #F1F1F1; */
+
+    
+    /* --main-color: #F6C90E;
+    --dark-color: #303841;
+    --light-color: #2E4750;
+    --text-color: #F7F7F7; */
+}
+
+.detail-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 50px;
+    border-radius: 1%;
+    background-color: var(--main-color);
+}
+.detail-item img{
+    max-width: 475px;
+}
+
+.stats-container{
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 10%;
+    background-color: var(--light-color);
+}
