@@ -33,12 +33,18 @@ body{
 	display: none;
 }
 
-
+/* Selects */
 select{
     display: flex;
     background-color: var(--dark-color);
-	margin: 50px auto;
+	margin: 50px 50px ;
 	justify-content: center;
+}
+
+.select-container{
+	margin-top: 60px;
+	justify-content: center;
+	display:flex;
 }
 
 /* Gallery */
@@ -88,12 +94,22 @@ select{
     display: block;
     padding: 0 0 2px 0;
 }
-.card_text p{
-    display: inline-block;
-    margin: 0 2px;
-    font-weight: 550;
-    padding: 2px 5px;
-    border-right: var(--text-color) 2px solid;
+.card_text .card_text-type{
+	display: flex;
+    width: 90%;
+    margin: 0 9px;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+.card_text .card_text-type p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--dark-color);
+    padding: 0.2rem 0.4rem;
+    margin: 0.2rem 0.2rem 0 0;
+    font-weight: 500;
+    border-radius: 9999px;
 }
 .card_text span{
 	color: var(--light-color);
@@ -169,7 +185,6 @@ select{
 
 
 /* Prev */
-
 .container-btn_pagination li.prev span{
 	top: 50%;
 	left: 20%;
@@ -195,12 +210,14 @@ select{
 	transform: rotate(45deg) translate(-2px,-1px) scaleX(1);
 } 
 
-.noHover{
+/* Btn Desactive */
+.container-btn_pagination .notHover{
+	box-shadow: none;	
     pointer-events: none;
-	box-shadow:0 0 0 #fff;
 }
-
-
+.container-btn_pagination .notHover span{
+	border-color: var(--dark-color);
+}
 
 
 

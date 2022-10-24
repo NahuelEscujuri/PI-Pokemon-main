@@ -128,7 +128,9 @@ export class Pokemons extends Component{
         }
         return(
             <>
-            <select name="select" onChange={DataTypechange}>
+            <div className={`select-container ${this.state.isLoading?"desactive":null}`}>
+            {/* <div> */}
+            <select name="select" onChange={DataTypechange} className={`${this.state.isLoading?"desactive":null}`}>
                 <option value ="all" selected={equalQuery("all")?"selected":null}>
                     All</option>
                 <option value ="db" selected={equalQuery("db")?"selected":null}>
@@ -137,13 +139,14 @@ export class Pokemons extends Component{
                     Api</option>
             </select>
 
-            {/* Desactivar Select si no hay Pokemones */}
-            <select name="select" onChange={orderchange}>
+            <select name="select" onChange={orderchange} className={`${this.state.isLoading?"desactive":null}`}>
                 <option value ="A - Z">A - Z</option>
                 <option value ="Z - A">Z - A</option>
                 <option value ="Biggest Attack">Biggest Attack</option>
                 <option value ="Minor Attack">Minor Attack</option>
             </select>
+            {/* </div> */}
+            </div>
 
             {/* Loader */}
             {!this.state.isLoading?undefined:<Loader/>}
@@ -168,8 +171,8 @@ export class Pokemons extends Component{
             {/* BTNS */}
             <div className={`container-btn ${this.state.isLoading?"desactive":null}`}>
             <ul className="container-btn_pagination">
-                <li className={`prev`} onClick={prevPag}><span></span></li>
-                <li className="next" onClick={nextPag}><span></span></li>
+                <li className={`prev ${minPage > 0?null:"notHover"}`} onClick={prevPag}><span></span></li>
+                <li className={`next ${maxPage < this.state.arrPokemones.length?null:"notHover"}`} onClick={nextPag}><span></span></li>
             </ul>
             </div>
             </>

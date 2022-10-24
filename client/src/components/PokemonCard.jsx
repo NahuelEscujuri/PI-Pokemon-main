@@ -10,7 +10,10 @@ const PokemonCard = (props)=>{
                  <img src ={!props.img?imgNotFound:props.img}/>
             <div className="card_text">
                  <h3>{props.name}</h3>
-                 <b>Type:</b>{props.types.map(t=>(<p className={t.name}>{t.name}</p>))}
+                 <b>Type:</b>
+                 {props.types?<div className="card_text-type">
+                   {props.types.map(t=>(<p className={t.name}>{t.name}</p>))}
+                 </div>:undefined}
             </div>
         </div>
         </Link>

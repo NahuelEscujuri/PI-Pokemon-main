@@ -176,14 +176,14 @@ router.get("/types",async(req,res,next)=>{
     
     tResultDb = await Type.findAll()
 
-    await axios(`https://pokeapi.co/api/v2/type`).then(r =>{
+    await axios(`https://pokeapi.co/api/v2/type`).then(async r =>{
         for(let type of r.data.results){
             let name = type.name;
-            if(!tResultDb.find(t=>t.name == name))Type.create({name})
+            if(!tResultDb.find(t=>t.name == name))await Type.create({name})
         }
     }).catch(e=>console.log("invalid URL"))
 
-    res.send(tResultDb);
+    res.send(await Type.findAll());
 })
 
 module.exports = router;

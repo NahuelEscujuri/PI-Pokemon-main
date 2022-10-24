@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../redux/action.js";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import './styles/form-style.css'
 import MultiSelectTag from '../selectTypes.js'
 
@@ -23,18 +23,21 @@ export default function CreatePokemon(){
 
     const dispatch = useDispatch();
 
-    const types = useSelector(store => store.types)
+    let types = useSelector(store => store.types)
 
+    let history = useHistory();
     async function handleSubmit(e){
         e.preventDefault();
         console.log(input);
-        dispatch(actions.createPokemon(input));
+        dispatch(actions.createPokemon(input)).then(()=>{
+            alert("Pokemon Create")
+            history.push(`/pokemons?typeData=db`)
+        });
         setInput({name:"",hp:"",attack:"",defense:"",speed:"",height:"",weight:"",typesName:[]})
     }
 
     const containerTypesSelect = useRef("containerTypesSelect")
     const typesSelect = useRef("typesSelect")
-    console.log("NOW TYPES",containerTypesSelect)
     let tagTypes;
     useEffect(() =>{
 
@@ -43,15 +46,15 @@ export default function CreatePokemon(){
            
         }
 
-        console.log("Types == []",types.length == 0)
+        console.log("Types.value:",types)
+        types=[];
         if(types.length == 0)dispatch(actions.getAllTypes()).then(e=>{
             try{
                 console.log("LENGTH",Object.keys(containerTypesSelect.current).length)
                 setInput((prev)=>({...prev,typesName:new MultiSelectTag(typesSelect.current)}))
                 
                 console.log("MultiSelectTag",input.typesName);
-                console.log("Childs",containerTypesSelect.current.childNodes[2])
-    
+                console.log("Childs",containerTypesSelect.current.childNodes[2]);
                 containerTypesSelect.current.removeChild(containerTypesSelect.current.childNodes[2])
     
                 console.log(Object.keys(containerTypesSelect.current));
@@ -63,7 +66,8 @@ export default function CreatePokemon(){
 
     return(
         <>
-        <div className="center marginTop">
+        <div className="marginTop">
+        <div className="center">
             <h1>Create Pokemon</h1>
             <form onSubmit={e=>handleSubmit(e)}>
                 <div className="txt_field">
@@ -138,6 +142,7 @@ export default function CreatePokemon(){
                         </div>
                 <input type="submit" value="CREATE" className="btn-submit"/>
             </form>
+        </div>
         </div>
         </>
     )
